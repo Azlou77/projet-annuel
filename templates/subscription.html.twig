@@ -14,21 +14,6 @@
         {% endblock %}
     </head>
     <body>
-        <header>
-        <nav>
-            <a href="">Home</a>
-            <a href="">Produits</a>
-            {% if app.user %}
-                <a href="">Profil</a>
-                <a href="">Déconnexion</a>
-            {% else %}
-                <a href="">Se Connecter</a>
-            {% endif %}
-          
-        </nav>
-        </header>
-        <main>
-            {% block body %}{% endblock %}
-        </main>
+        {% block body %}{% endblock %}
     </body>
 </html>

@@ -69,7 +69,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 //            ->getQuery()
 //            ->getResult()
 //        ;
-//    } 
+    //    } 
 
 //    public function findOneBySomeField($value): ?User
 //    {
