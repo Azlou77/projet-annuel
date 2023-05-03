@@ -16,13 +16,13 @@
     <body>
         <header>
         <nav>
-            <a href="">Home</a>
-            <a href="">Produits</a>
+            <a href="app_home">Home</a>
+            <a href="{{ path('app_prices') }}">Subscription</a>
             {% if app.user %}
-                <a href="">Profil</a>
-                <a href="">Déconnexion</a>
+
+                <a href="{{ path('app_logout') }}">Déconnexion</a>
             {% else %}
-                <a href="">Se Connecter</a>
+                <a href="{{ path('app_login')}}">Se Connecter</a>
             {% endif %}
           
         </nav>
