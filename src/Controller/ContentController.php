@@ -17,4 +17,14 @@ class ContentController extends AbstractController
             'controller_name' => 'ContentController',
         ]);
     }
+
+    // Dashboard page
+    #[Route('/dashboard', name: 'app_dashboard')]
+    public function viewdashboard(): Response
+    {
+        return $this->render('content/dashboard.html.twig', [
+            'controller_name' => 'ContentController',
+        ]);
+    }
+    
 }

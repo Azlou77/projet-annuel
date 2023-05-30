@@ -1,0 +1,18 @@
+{# navbar bootstrap #}
+<nav>
+  <ul class="nav nav-pills">
+    {# Home page #}
+    <li class="nav-item mt-3">
+      <a class="nav-link active" href="index.php">Home</a>
+    </li>
+    {# Prices page #}
+    <li class="nav-item mt-3">
+      <a class="nav-link disabled" href="{{ path('app_prices') }}">Prices</a>
+    </li>
+    {# Dashboard page #}
+    <li class="nav-item mt-3">
+      <a class="nav-link disabled" href="{{ path('app_dashboard') }}">Dashboard</a>
+    </li>
+    </ul>
+</nav>
+

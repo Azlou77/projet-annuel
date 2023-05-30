@@ -15,19 +15,18 @@
 {# navbar bootstrap #}
 <nav>
   <ul class="nav nav-pills">
-    <li class="nav-item">
+    {# Home page #}
+    <li class="nav-item mt-3">
       <a class="nav-link active" href="index.php">Home</a>
     </li>
-    <li class="nav-item">
+    {# Prices page #}
+    <li class="nav-item mt-3">
       <a class="nav-link disabled" href="{{ path('app_prices') }}">Prices</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link disabled" href="contact.php">Contact</a>
     </li>
 
     {# navbar icons #}
     {# user icon #}
-    <li class="nav-item">
+    <li class="nav-item mt-3">
       <a class="nav-link disabled" href="">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height="20" width="20">
         <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
@@ -80,7 +79,7 @@
         <h5>20 euros</h5>
       </div>
     </div>
-    <button class="btn btn-secondary" type="button">A Button</button>
+    <button class="btn btn-secondary" type="button">Next</button>
   </div>
 </div>
 
@@ -93,28 +92,14 @@
       </button>
     </div>
   </li>
-
-    {# script to open/close navbar #}
-    <script>
-    function openNav() {
-      document.getElementById("mySidebar").style.width = "250px";
-      document.getElementById("main").style.marginLeft = "250px";
-    }
-
-    function closeNav() {
-      document.getElementById("mySidebar").style.width = "0";
-      document.getElementById("main").style.marginLeft= "0";
-    }
-    </script>
-
     <li><output id="output">0</output></li>
   </ul>
 </nav>
 </div>
 
   {# Prices card #}
-	<h1>Prices table with bootstrap tables</h1>
-  <div class="container">
+	<h1 class="text-center">Prices table with bootstrap tables</h1>
+  <div class="container" style="max-width: 500px">
     <div class="card-deck mb-3 text-center">
       <div class="card mb-4 shadow-sm">
             <h1 class="card-title pricing-card-title">$20 <small class="text-muted">/ mo</small></h1>
