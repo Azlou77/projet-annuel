@@ -11,7 +11,22 @@
 </head>
 <body>
 
+{# Navigation #}
 {% include "_partials/_nav.html.twig" %}
+
+{# Header content #}
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Company name</a>
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+  <div class="navbar-nav">
+    <div class="nav-item text-nowrap">
+      <a class="nav-link px-3" href="#">Sign out</a>
+    </div>
+  </div>
+</header>
 
 {# Sidebar  bootstrap #}
 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
@@ -114,7 +129,45 @@
                 Cloud
             </a>
           </li>
+
+          {# Progress bar #}
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                            25%
+                        </div>
+                    </div>
+                </a>
+            </li>
+        
+        {# Button add space #}
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <button type="button" class="btn btn-primary">Add space</button>
+            </a>
+        </li>
         </ul>
       </div>
     </nav>
+
+{# Main content #}
+<main class="container">
+    <div class="row">
+        <div class="col-12">
+            {% block body %}
+            {# Folders gallery #}
+            {% include "_partials/_gallery.html.twig" %}
+            {% include "_partials/_gallery.html.twig" %}
+            {% include "_partials/_gallery.html.twig" %}
+            
+           
+            {% endblock %}
+        </div>
+    </div>
+</main>
+
+
+
+
 
