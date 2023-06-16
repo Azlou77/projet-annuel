@@ -3,14 +3,14 @@
 
 namespace App\Form;
 
-use App\Entity\Product;
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
 
-class ProductType extends AbstractType
+class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -23,7 +23,7 @@ class ProductType extends AbstractType
                 'mapped' => false,
 
                 // make it optional so you don't have to re-upload the PDF file
-                // every time you edit the Product details
+                // every time you edit the User details
                 'required' => false,
 
                 // unmapped fields can't define their validation using annotations
@@ -46,7 +46,7 @@ class ProductType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Product::class,
+            'data_class' => User::class,
         ]);
     }
 }
