@@ -11,15 +11,18 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
-{
+{   
+    # Id
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
+    # Email
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
+    # Roles
     #[ORM\Column]
     private array $roles = [];
 
@@ -29,16 +32,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    # Uploading files
+    #[ORM\Column(type: 'string')]
+    private $brochureFilename;
+
+    public function getBrochureFilename(): string
+    {
+        return $this->brochureFilename;
+    }
+
+    public function setBrochureFilename(string $brochureFilename): self
+    {
+        $this->brochureFilename = $brochureFilename;
+
+        return $this;
+    }
+
+    # Getters and Setters
+    # GetId
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    # GetEmail
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
+    # SetEmail
     public function setEmail(string $email): self
     {
         $this->email = $email;
@@ -68,6 +91,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return array_unique($roles);
     }
 
+    # setRoles
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
@@ -98,4 +122,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+    
 }
