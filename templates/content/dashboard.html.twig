@@ -42,7 +42,14 @@
                     New 
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Import files</a></li>
+                    <li>
+                    {# Form  to upload files #}
+                    {{ form_start(form) }}
+                        {# ... #}
+                        {{ form_row(form.brochure) }}
+                    {{ form_end(form) }}
+
+                    </li>
                     <li><a class="dropdown-item" href="#">Import folder</a></li>
                 </ul>
             </div>

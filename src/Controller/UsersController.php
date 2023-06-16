@@ -22,7 +22,7 @@ class UsersController extends AbstractController
         ]);
     }
 
-    #[Route('/user/files', name: 'app_user_new')]
+    #[Route('/dashboard/files', name: 'app_user_new')]
     public function new(Request $request, SluggerInterface $slugger): Response
     {
         $user = new User();
@@ -61,7 +61,7 @@ class UsersController extends AbstractController
             return $this->redirectToRoute('app_user_list');
         }
 
-        return $this->render('users/files/addFiles.html.twig', [
+        return $this->render('content/dashboard.html.twig', [
             'form' => $form,
         ]);
     }
