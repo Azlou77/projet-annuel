@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use App\Form\UserType;
+use Symfony\Component\HttpFoundation\File\File;
 
 class UsersController extends AbstractController
 {
@@ -22,7 +23,7 @@ class UsersController extends AbstractController
         ]);
     }
 
-    #[Route('/dashboard/files', name: 'app_user_new')]
+    #[Route('/user/files', name: 'app_user_new')]
     public function new(Request $request, SluggerInterface $slugger): Response
     {
         $user = new User();
@@ -54,14 +55,15 @@ class UsersController extends AbstractController
                 // updates the 'brochureFilename' property to store the PDF file name
                 // instead of its contents
                 $user->setBrochureFilename($newFilename);
+                
             }
 
             // ... persist the $user variable or any other work
 
-            return $this->redirectToRoute('app_user_list');
+            return $this->redirectToRoute('app_users');
         }
 
-        return $this->render('content/dashboard.html.twig', [
+        return $this->render('users/files/addFiles.html.twig', [
             'form' => $form,
         ]);
     }

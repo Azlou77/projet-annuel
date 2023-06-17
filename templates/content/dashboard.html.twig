@@ -43,11 +43,7 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li>
-                    {# Form  to upload files #}
-                    {{ form_start(form) }}
-                        {# ... #}
-                        {{ form_row(form.brochure) }}
-                    {{ form_end(form) }}
+                        <a class="dropdown-item" href="#">New product</a>
 
                     </li>
                     <li><a class="dropdown-item" href="#">Import folder</a></li>
@@ -174,8 +170,12 @@
 
             {# Table CRUD #}
             {% include "_partials/_table.html.twig" %}
+
             
             {% endblock %}
+          
+
+
         </div>
     </div>
 </main>
