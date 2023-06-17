@@ -4,10 +4,15 @@ namespace App\Entity;
 
 use App\Repository\ProductsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Trait\SlugTrait;
+
 
 #[ORM\Entity(repositoryClass: ProductsRepository::class)]
 class Products
 {
+    use SlugTrait;
+
+    
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]

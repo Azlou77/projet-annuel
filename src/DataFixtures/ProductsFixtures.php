@@ -2,14 +2,15 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Products;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use App\Entity\Products;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Faker;
 
 class ProductsFixtures extends Fixture
 {
+    public function __construct(private SluggerInterface $slugger){}
     public function load(ObjectManager $manager): void
     {
           // use the factory to create a Faker\Generator instance
@@ -22,8 +23,9 @@ class ProductsFixtures extends Fixture
               $product->setSlug($this->slugger->slug($product->getName())->lower());
               $product->setPrice($faker->numberBetween(900, 150000));
               $product->setQuantity($faker->numberBetween(0, 10));
+              $product->setImages($faker->imageUrl(640, 480, 'animals', true));
 
-            $manager->persist($product);
+              $manager->persist($product);
             }
             $manager->flush();
     }
