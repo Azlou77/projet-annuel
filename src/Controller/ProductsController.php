@@ -19,7 +19,7 @@ class ProductsController extends AbstractController
     }
 
     // Display the details of a product
-    #[Route('/{slug}', name: 'details')]
+    #[Route('/products/{slug}', name: 'details')]
     public function details(Products $product): Response
     {
         return $this->render('products/details.html.twig', compact('product'));
