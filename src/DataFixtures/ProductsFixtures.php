@@ -21,7 +21,6 @@ class ProductsFixtures extends Fixture
               $product->setName($faker->text(15));
               $product->setDescription($faker->text());
               $product->setSlug($this->slugger->slug($product->getName())->lower());
-              $product->setPrice($faker->numberBetween(900, 150000));
               $product->setQuantity($faker->numberBetween(0, 10));
               $product->setImages($faker->imageUrl(640, 480, 'animals', true));
 

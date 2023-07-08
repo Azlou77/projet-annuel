@@ -26,3 +26,5 @@ function increment() {
 button.onclick = increment
 }
 window.onload = init
+
+// Display results
