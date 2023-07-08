@@ -20,10 +20,13 @@ class UsersController extends AbstractController
     #[Route('/users', name: 'app_users')]
     public function index(): Response 
     {
+        $user = $this->getUser();
         return $this->render('users/index.html.twig', [
             'controller_name' => 'UsersController',
+            'user' => $user,
         ]);
     }
+ 
 
     #[Route('/user/files', name: 'app_user_new')]
     public function new(Request $request, SluggerInterface $slugger): Response

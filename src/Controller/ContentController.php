@@ -30,7 +30,8 @@ class ContentController extends AbstractController
     // Prices page
     #[Route('/prices', name: 'app_prices')]
     public function viewprices(): Response
-    {
+    {   
+        
         return $this->render('content/prices.html.twig');
     }
 
@@ -38,7 +39,8 @@ class ContentController extends AbstractController
     #[Route('/dashboard', name: 'app_dashboard')]
     public function viewdashboard(): Response
     {
-        return $this->render('content/dashboard.html.twig');
+        $user = $this->getUser();
+        return $this->render('content/dashboard.html.twig', compact('user'));
     }
 
     
