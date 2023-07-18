@@ -1,0 +1,32 @@
+{% if app.user %}
+{# navbar bootstrap #}
+<nav>
+  <ul class="nav nav-pills">
+
+    {# Prices page #}
+    <li class="nav-item mt-3">
+      <a class="nav-link disabled" href="{{ path('app_prices') }}">Prices</a>
+    </li>
+    {# Dashboard page #}
+    <li class="nav-item mt-3">
+      <a class="nav-link disabled" href="{{ path('app_dashboard') }}">Dashboard</a>
+    </li>
+
+    {% endif %}
+    {# Login page #}
+    <li class="nav-item mt-3">
+      <a class="nav-link disabled" href="{{ path('app_login') }}">Login</a>
+    </li>
+
+    {# Register page #}
+    <li class="nav-item mt-3">
+      <a class="nav-link disabled" href="{{ path('app_register') }}">Register</a>
+    </li>
+
+    {# Logout page #}
+    <li class="nav-item mt-3">
+      <a class="nav-link disabled" href="{{ path('app_logout') }}">Logout</a>
+    </li>
+    </ul>
+</nav>
+

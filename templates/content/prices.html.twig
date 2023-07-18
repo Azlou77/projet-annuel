@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>Prices</title>
+  {# Boostrap assets #}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  {# Fontawesome icons #}
+  <script src="https://kit.fontawesome.com/43ce894e6d.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+
+{# navbar bootstrap #}
+<nav>
+  <ul class="nav nav-pills">
+    {# Home page #}
+    <li class="nav-item mt-3">
+      <a class="nav-link active" href="index.php">Home</a>
+    </li>
+    {# Prices page #}
+    <li class="nav-item mt-3">
+      <a class="nav-link disabled" href="{{ path('app_prices') }}">Prices</a>
+    </li>
+
+    {# navbar icons #}
+    {# user icon #}
+    <li class="nav-item mt-3">
+      <a class="nav-link disabled" href="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height="20" width="20">
+        <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+        <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
+      </a>
+    </li>
+
+    {# shopping cart icon #}
+  
+    <div class="offcanvas offcanvas-start" id="demo">
+  <div class="offcanvas-header">
+    <h1 class="offcanvas-title">Cart shopping</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="card mb-3">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                      <div class="d-flex flex-row align-items-center">
+                        <div>
+                          <img
+                            src="https://s.qwant.com/fav/e/c/ecole-ipssi_com.ico"
+                            class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                        </div>
+                        
+                        {# Name products #}
+                        <div class="ms-3">
+                          <h5>Subscription entreprise</h5>
+                        </div>
+                      </div>
+                      <div class="d-flex flex-row align-items-center">
+                        <div style="width: 50px;">
+                          <h5 class="fw-normal mb-0">1</h5>
+                        </div>
+                        {# Price products #}
+                        <div style="width: 80px;">
+                          <h5 class="mb-0">20 euros</h5>
+                        </div>
+                        <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+    {# Total prices products #}
+    <div class="d-flex justify-content-between">
+      <div>
+        <h5>Total prices</h5>
+      </div>
+      <div>
+        <h5>20 euros</h5>
+      </div>
+    </div>
+    <button class="btn btn-secondary" type="button">Next</button>
+  </div>
+</div>
+
+ <li id="main"> 
+    <div class="container-fluid mt-3">
+      <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
+        <svg id="modal" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512 " height="30" width="30" data-toggle="modal" data-target="#exampleModal">
+              <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+              <path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
+      </button>
+    </div>
+  </li>
+    <li><output id="output">0</output></li>
+  </ul>
+</nav>
+</div>
+
+  {# Prices card #}
+	<h1 class="text-center">Prices table with bootstrap tables</h1>
+  <div class="container" style="max-width: 500px">
+    <div class="card-deck mb-3 text-center">
+      <div class="card mb-4 shadow-sm">
+            <h1 class="card-title pricing-card-title">$20 <small class="text-muted">/ mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>1 user included</li>
+              <li>20 GB of storage</li>
+              <li>View statistics</li>
+              <li>Access files</li>
+              <li>Manage files</li>
+              <li>Possibility to add stockage</li>
+            </ul>
+            <button type="button" id="btn" class="btn btn-lg btn-block btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Add cart
+            </button>
+
+          </div>
+        </div>
+      </div>
+
+      {# Prices script #}
+      <script>
+      var button = document.getElementById("btn")
+var output = document.getElementById("output")
+var number
+var counter
+
+function init() {
+// Convert string to primitve number
+  number = parseInt(output.innerText)
+      
+/**
+* Start counter by adding any number to start counting.
+* In this case the ouput starts from 0 so to immediately
+* invoke the button to increment the counter add 1 to start 
+* counting in natural
+* number (counting numbers).
+*/  
+counter = number + 1
+
+function increment() {
+  // Increment counter
+  value = counter++
+  output.innerText = value
+}
+
+// Output the increment value for every click
+button.onclick = increment
+}
+window.onload = init
+      </script>
+   
+
+      {# Footer bootstrap #}
+      <footer class="pt-4 my-md-5 pt-md-5 border-top">
+        <div class="row">
+          <div class="col-12 col-md">
+            <img class="mb-2" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="24" height="24">
+            <small class="d-block mb-3 text-muted">© 2017-2018</small>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Features</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="#">Cool stuff</a></li>
+              <li><a class="text-muted" href="#">Random feature</a></li>
+              <li><a class="text-muted" href="#">Team feature</a></li>
+              <li><a class="text-muted" href="#">Stuff for developers</a></li>
+              <li><a class="text-muted" href="#">Another one</a></li>
+              <li><a class="text-muted" href="#">Last time</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Resources</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="#">Resource</a></li>
+              <li><a class="text-muted" href="#">Resource name</a></li>
+              <li><a class="text-muted" href="#">Another resource</a></li>
+              <li><a class="text-muted" href="#">Final resource</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md">
+            <h5>About</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="#">Team</a></li>
+              <li><a class="text-muted" href="#">Locations</a></li>
+              <li><a class="text-muted" href="#">Privacy</a></li>
+              <li><a class="text-muted" href="#">Terms</a></li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+</body>
+</html>
