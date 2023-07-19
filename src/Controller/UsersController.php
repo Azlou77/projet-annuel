@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\File\File;
 
 class UsersController extends AbstractController
 {
+    
     #[Route('/users', name: 'app_users')]
     public function index(): Response 
     {
