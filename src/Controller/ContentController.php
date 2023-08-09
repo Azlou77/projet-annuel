@@ -39,9 +39,13 @@ class ContentController extends AbstractController
     #[Route('/dashboard', name: 'app_dashboard')]
     public function viewdashboard(): Response
     {
-        $user = $this->getUser();
-        return $this->render('content/dashboard.html.twig', compact('user'));
+
+        $files = scandir('C:\xampp\htdocs\projet-annuel\public\uploads\brochures');
+        return $this->render('content/dashboard.html.twig', compact('files'));
     }
+
+
+    
 
     
 }

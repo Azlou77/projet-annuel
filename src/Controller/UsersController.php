@@ -11,7 +11,10 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use App\Form\UserType;
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Doctrine\ORM\EntityManagerInterface;
 
 
 
@@ -24,6 +27,18 @@ class UsersController extends AbstractController
         return $this->render('users/index.html.twig', [
             'controller_name' => 'UsersController',
             'user' => $user,
+        ]);
+
+
+        
+    }
+    #[Route('/users/list', name: 'app_users_list')]
+    public function list(EntityManagerInterface $em)
+    {
+        $users = $em->getRepository(User::class)->findAll();
+    
+        return $this->render('users/list.html.twig', [
+            'users' => $users,
         ]);
     }
  
@@ -89,4 +104,5 @@ class UsersController extends AbstractController
     $file->move($targetDirectory, $safeFilename);
     
 }
+    
 }
