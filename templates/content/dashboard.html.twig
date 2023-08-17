@@ -10,7 +10,7 @@
   <script src="https://kit.fontawesome.com/43ce894e6d.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <h1>Hello {{ user.email }}</h1>
+
 
 {# Navigation #}
 {% include "_partials/_nav.html.twig" %}
@@ -160,7 +160,7 @@
     <div class="row">
         <div class="col-12">
             {% block body %}
-            <a href="{{ asset('uploads/brochures/' ~ user.brochureFilename) }}">View brochure (PDF)</a>
+    
             {# Folders gallery #}
             {% include "_partials/_gallery.html.twig" %}
             {% include "_partials/_gallery.html.twig" %}
