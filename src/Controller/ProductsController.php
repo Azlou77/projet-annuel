@@ -11,10 +11,8 @@ use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * Class to manage the rendering of the products
- * @class ProductsController
+ *  ProductsController
  * @package App\Controller
- * 
- * 
  */
 
 class ProductsController extends AbstractController
@@ -36,10 +34,10 @@ class ProductsController extends AbstractController
     /**
      * Function to display the details of a product
      * 
-     * @Route("/{slug}", name="details") ex: /products/iphone-12
+     * @Route("products/{slug}", name="details") ex: /products/iphone-12
      * @return  Response
      */
-    #[Route('products/{slug}', name: 'app_details')]
+    #[Route('/products/{slug}', name: 'app_details')]
     public function details(Products $product): Response
     {
         // Return the view
