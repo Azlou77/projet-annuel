@@ -30,7 +30,8 @@ class ContentController extends AbstractController
     // Prices page
     #[Route('/prices', name: 'app_prices')]
     public function viewprices(): Response
-    {
+    {   
+        
         return $this->render('content/prices.html.twig');
     }
 
@@ -38,8 +39,13 @@ class ContentController extends AbstractController
     #[Route('/dashboard', name: 'app_dashboard')]
     public function viewdashboard(): Response
     {
-        return $this->render('content/dashboard.html.twig');
+
+        $files = scandir('C:\xampp\htdocs\projet-annuel\public\uploads\brochures');
+        return $this->render('content/dashboard.html.twig', compact('files'));
     }
+
+
+    
 
     
 }

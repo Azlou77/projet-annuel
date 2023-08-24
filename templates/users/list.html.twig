@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+
+{% for user in users %}
+    <a href="{{ asset('uploads/brochures/' ~ user.brochureFilename) }}">View brochure for {{ user.name }}</a>
+{% endfor %}
+
+
