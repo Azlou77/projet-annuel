@@ -17,6 +17,19 @@
         {% endblock %}
     </head>
     <body>
+        <header>
+        <nav>
+            <a href="{{ path('app_dashboard') }}">Dashboard</a>
+            <a href="{{ path('app_prices') }}">Prices</a>
+            {% if app.user %}
+
+                <a href="{{ path('app_logout') }}">Déconnexion</a>
+            {% else %}
+                <a href="{{ path('app_login')}}">Se Connecter</a>
+            {% endif %}
+          
+        </nav>
+        </header>
         <main>
             {% block body %}{% endblock %}
         </main>
