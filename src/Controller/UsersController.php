@@ -48,27 +48,5 @@ class UsersController extends AbstractController
         ]);
     }
 
-
  
- 
-    
-    
-
-    // Display the files of a user
-    #[Route('/user/files/{slug}', name: 'app_user_files')]
-    public function viewFiles(User $user): Response
-    {
-        return $this->render('users/files/viewFiles.html.twig', compact('user'));
-    }
-
-    public function upload(Request $request)
-{
-    $file = $request->files->get('file');
-    $originalName = $file->getClientOriginalName();
-    $targetDirectory = $this->getParameter('kernel.project_dir').'/public/uploads';
-    $safeFilename = $originalName;
-    $file->move($targetDirectory, $safeFilename);
-    
-    }
-
 }
