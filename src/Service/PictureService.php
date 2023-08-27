@@ -17,6 +17,6 @@ class PictureService
         return 'picture';
     }
 }
-```
+
 
 ?>

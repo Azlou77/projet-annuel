@@ -10,7 +10,7 @@ use App\Entity\User;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\String\Slugger\SluggerInterface;
-use App\Form\UserType;
+use App\Form\UserType;  
 use Symfony\Component\HttpFoundation\File\File;
 
 
@@ -25,7 +25,7 @@ class UsersController extends AbstractController
         ]);
     }
 
-    #[Route('/user/files', name: 'app_user_new')]
+    #[Route('/users/files', name: 'app_user_new')]
     public function new(Request $request, SluggerInterface $slugger): Response
     {
         $user = new User();
@@ -71,7 +71,7 @@ class UsersController extends AbstractController
     }
 
     // Display the files of a user
-    #[Route('/user/files/{slug}', name: 'app_user_files')]
+    #[Route('/users/files/{slug}', name: 'app_user_files')]
     public function viewFiles(User $user): Response
     {
         return $this->render('users/files/viewFiles.html.twig', compact('user'));
