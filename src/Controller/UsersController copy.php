@@ -74,7 +74,7 @@ class UsersController extends AbstractController
     #[Route('/users/files/{slug}', name: 'app_user_files')]
     public function viewFiles(User $user): Response
     {
-        return $this->render('users/files/viewFiles.html.twig', compact('user'));
+        return $this->render('*', compact('user'));
     }
 
     public function upload(Request $request)
