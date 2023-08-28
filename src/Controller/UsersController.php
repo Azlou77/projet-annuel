@@ -11,9 +11,8 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use App\Form\UserType;
-use Symfony\Component\HttpFoundation\File\File;
-
-
+use App\Entity\Files; // Ajout de l'import pour l'entité Files
+use Doctrine\ORM\EntityManagerInterface;
 
 class UsersController extends AbstractController
 {
@@ -25,65 +24,61 @@ class UsersController extends AbstractController
         ]);
     }
 
-    #[Route('/user/files', name: 'app_user_new')]
-    public function new(Request $request, SluggerInterface $slugger): Response
+    #[Route('/users/files', name: 'app_user_new')]
+    public function new(Request $request, SluggerInterface $slugger, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var UploadedFile $brochureFile */
-            $brochureFile = $form->get('brochure')->getData();
-
-            // this condition is needed because the 'brochure' field is not required
-            // so the PDF file must be processed only when a file is uploaded
-            if ($brochureFile) {
-                $originalFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
-                // this is needed to safely include the file name as part of the URL
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename.'-'.uniqid().'.'.$brochureFile->guessExtension();
-
-                // Move the file to the directory where brochures are stored
-                try {
-                    $brochureFile->move(
-                        $this->getParameter('brochures_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
-                }
-
-                // updates the 'brochureFilename' property to store the PDF file name
-                // instead of its contents
-                $user->setBrochureFilename($newFilename);
-                
-            }
-
-            // ... persist the $user variable or any other work
-
-            return $this->redirectToRoute('app_users');
+            // ... (rest of your code)
         }
 
-        return $this->render('users/files/addFiles.html.twig', [
-            'form' => $form,
-        ]);
+        // ... (rest of your code)
     }
 
-    // Display the files of a user
-    #[Route('/user/files/{slug}', name: 'app_user_files')]
+    #[Route('/users/files/{slug}', name: 'app_user_files')]
     public function viewFiles(User $user): Response
     {
         return $this->render('users/files/viewFiles.html.twig', compact('user'));
     }
 
-    public function upload(Request $request)
-{
-    $file = $request->files->get('file');
-    $originalName = $file->getClientOriginalName();
-    $targetDirectory = $this->getParameter('kernel.project_dir').'/public/uploads';
-    $safeFilename = $originalName;
-    $file->move($targetDirectory, $safeFilename);
-    
-}
+    #[Route('/upload', name: 'upload', methods: "GET")]
+    public function upload(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $uploadedFile = $request->files->get('file');
+
+        if (!$uploadedFile) {
+            return $this->json(['message' => 'No file uploaded'], 400);
+        }
+
+        $destination = 'uploads/';
+        $filename = uniqid() . '-' . $uploadedFile->getClientOriginalName();
+        $uploadedFile->move($destination, $filename);
+
+        $size = $uploadedFile->getSize();
+        $mimeType = $uploadedFile->getClientMimeType();
+        $user = $this->getUser(); // Make sure you have a proper user authentication setup
+
+        $newFile = new Files();
+        $newFile->setFileName($filename);
+        $newFile->setFileSize($size);
+        $newFile->setFileType($mimeType);
+        $newFile->setFileUrl($destination . $filename);
+        $newFile->setUser($user);
+        $entityManager->persist($newFile);
+        $entityManager->flush();
+
+        $sizeGb = $size / (1024 * 1024 * 1024);
+        $user->setUsedStockage($user->getUsedStockage() + $sizeGb);
+
+        if ($user->getUsedStockage() > $user->getStockageLimit()) {
+            return $this->json(['message' => 'Vous avez dépassé votre quota de stockage'], 400);
+        } else {
+            $entityManager->persist($user);
+            $entityManager->flush();
+            return $this->json($newFile, 201);
+        }
+    }
 }

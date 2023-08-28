@@ -1,1 +1,5 @@
-{# View files of users #}
+{# View files uploaded files #}
+{% for user in user %}
+    <a href="{{ file.url }}">{{ file.name }}</a>
+{% endfor %}
+```

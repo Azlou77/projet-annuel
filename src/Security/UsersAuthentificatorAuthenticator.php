@@ -40,6 +40,7 @@ class UsersAuthentificatorAuthenticator extends AbstractLoginFormAuthenticator
         );
     }
 
+    // chemin de retour sur la page de connexion
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
