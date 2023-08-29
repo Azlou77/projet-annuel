@@ -1,54 +1,113 @@
-<?php
-// src/Form/FilesType.php
-namespace App\Form;
+<?php 
 
-use App\Entity\Files;
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\File;
+// src/Form/FilesType.php 
 
-class FilesType extends AbstractType
-{
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
-        $builder
-            // ...
-            ->add('brochure', FileType::class, [
-                'label' => 'Brochure (PDF file)',
+namespace App\Form; 
 
-                // unmapped means that this field is not associated to any entity property
-                'mapped' => false,
+ 
+ 
 
-                // make it optional so you don't have to re-upload the PDF file
-                // every time you edit the Files details
-                'required' => false,
+use App\Entity\Files; 
 
-                // unmapped fields can't define their validation using annotations
-                // in the associated entity, so you can use the PHP constraint classes
-                'constraints' => [
-                    new File([
-                        'maxSize' => '1024k',
-                        'mimeTypes' => [
-                            'application/pdf',
-                            'application/x-pdf',
-                        ],
-                        'mimeTypesMessage' => 'Please upload a valid PDF document',
-                    ])
-                ],
-            ])
-            // ...
-        ;
-    }
+use Symfony\Component\Form\AbstractType; 
 
-    public function configureOptions(OptionsResolver $resolver): void
-    {
-        $resolver->setDefaults([
-            'data_class' => Files::class,
-        ]);
-    }
-}
+use Symfony\Component\Form\Extension\Core\Type\FileType; 
 
+use Symfony\Component\Form\FormBuilderInterface; 
 
-?>
+use Symfony\Component\OptionsResolver\OptionsResolver; 
+
+use Symfony\Component\Validator\Constraints\File; 
+
+ 
+ 
+
+class FilesType extends AbstractType 
+
+{ 
+
+    public function buildForm(FormBuilderInterface $builder, array $options): void 
+
+    { 
+
+        $builder 
+
+            // ... 
+
+            ->add('brochure', FileType::class, [ 
+
+                'label' => 'Brochure (PDF file)', 
+
+ 
+ 
+
+                // unmapped means that this field is not associated to any entity property 
+
+                'mapped' => false, 
+
+ 
+ 
+
+                // make it optional so you don't have to re-upload the PDF file 
+
+                // every time you edit the Files details 
+
+                'required' => false, 
+
+ 
+ 
+
+                // unmapped fields can't define their validation using annotations 
+
+                // in the associated entity, so you can use the PHP constraint classes 
+
+                'constraints' => [ 
+
+                    new File([ 
+
+                        'maxSize' => '1024k', 
+
+                        'mimeTypes' => [ 
+
+                            'application/pdf', 
+
+                            'application/x-pdf', 
+
+                        ], 
+
+                        'mimeTypesMessage' => 'Please upload a valid PDF document', 
+
+                    ]) 
+
+                ], 
+
+            ]) 
+
+            // ... 
+
+        ; 
+
+    } 
+
+ 
+ 
+
+    public function configureOptions(OptionsResolver $resolver): void 
+
+    { 
+
+        $resolver->setDefaults([ 
+
+            'data_class' => Files::class, 
+
+        ]); 
+
+    } 
+
+} 
+
+ 
+ 
+ 
+
+?> 
