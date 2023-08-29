@@ -32,21 +32,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    # Uploading files
-    #[ORM\Column(type: 'string')]
-    private $brochureFilename;
-
-    public function getBrochureFilename(): string
-    {
-        return $this->brochureFilename;
-    }
-
-    public function setBrochureFilename(string $brochureFilename): self
-    {
-        $this->brochureFilename = $brochureFilename;
-
-        return $this;
-    }
+    
 
     # Getters and Setters
     # GetId

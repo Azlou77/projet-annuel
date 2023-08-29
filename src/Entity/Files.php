@@ -10,29 +10,45 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Files
 {
+
+    
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
+
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+
+    
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Veuillez fournir un nom pour le fichier.")
      */
+
+     #[ORM\Column(type: 'string')]
+     #[Assert\NotBlank(message: 'Veuillez fournir un nom pour le fichier.')]
+
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Veuillez fournir un chemin pour le fichier.")
      */
+
+    #[ORM\Column(type: 'string')]
+    #[Assert\NotBlank(message: 'Veuillez fournir un chemin pour le fichier.')]
     private $path;
 
-     # Uploading files
-        /**
-        * @ORM\Column(type="string", length=255)
-        */
+    /**
+     * 
+     * @ORM\Column(type="string", length=255)
+     */
+
         
      #[ORM\Column(type: 'string')]
      private $brochureFilename;
@@ -94,8 +110,5 @@ class Files
     public function __toString()
     {
         return $this->name;
-    }
-
-
-    
+    }   
 }
