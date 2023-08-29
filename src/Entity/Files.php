@@ -2,113 +2,82 @@
 
 namespace App\Entity;
 
-use Doctrine\\ORM\\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
+use App\Repository\FilesRepository;
+use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\FileRepository")
- */
+#[ORM\Entity(repositoryClass: FilesRepository::class)]
 class Files
 {
-
-    
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column]
+    private ?int $id = null;
 
-    
-    private $id;
+    #[ORM\Column(length: 255)]
+    private ?string $name = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Veuillez fournir un nom pour le fichier.")
-     */
+    #[ORM\Column]
+    private ?int $size = null;
 
-     #[ORM\Column(type: 'string')]
-     #[Assert\NotBlank(message: 'Veuillez fournir un nom pour le fichier.')]
-
-    private $name;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Veuillez fournir un chemin pour le fichier.")
-     */
+    #[ORM\Column(length: 255)]
+    private ?string $extension = null;
 
     #[ORM\Column(type: 'string')]
-    #[Assert\NotBlank(message: 'Veuillez fournir un chemin pour le fichier.')]
-    private $path;
+    private string $brochureFilename;
 
-    /**
-     * 
-     * @ORM\Column(type="string", length=255)
-     */
+    public function getBrochureFilename(): string
+    {
+        return $this->brochureFilename;
+    }
 
-        
-     #[ORM\Column(type: 'string')]
-     private $brochureFilename;
- 
-     public function getBrochureFilename(): string
-     {
-         return $this->brochureFilename;
-     }
- 
-     public function setBrochureFilename(string $brochureFilename): self
-     {
-         $this->brochureFilename = $brochureFilename;
- 
-         return $this;
-     }
-     
+    public function setBrochureFilename(string $brochureFilename): self
+    {
+        $this->brochureFilename = $brochureFilename;
 
-    // getters and setters
+        return $this;
+    }
+
+
+
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function setId(int $id): ?self
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-
     public function getName(): ?string
     {
         return $this->name;
     }
 
-
-    public function setName(string $name): ?self
+    public function setName(string $name): static
     {
         $this->name = $name;
+
         return $this;
     }
 
-
-    public function getPath(): ?string
+    public function getSize(): ?int
     {
-        return $this->path;
+        return $this->size;
     }
 
-
-
-    public function setPath(string $path): ?self
+    public function setSize(int $size): static
     {
-        $this->path = $path;
+        $this->size = $size;
+
         return $this;
     }
 
-
-    public function __toString()
+    public function getExtension(): ?string
     {
-        return $this->name;
-    }   
+        return $this->extension;
+    }
+
+    public function setExtension(string $extension): static
+    {
+        $this->extension = $extension;
+
+        return $this;
+    }
 }
