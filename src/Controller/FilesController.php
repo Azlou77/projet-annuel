@@ -17,7 +17,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 // use for Files 
 use App\Entity\Files; 
-use App\Form\FilesType; 
+use App\Form\FilesType;
+use App\Repository\FilesRepository;
 
 class FilesController extends AbstractController 
 
@@ -49,7 +50,7 @@ class FilesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) { 
 
             /** @var UploadedFile $brochureFile */ 
-            $brochureFile = $form->get('brochure')->getData();
+            $brochureFile = $form->get('name')->getData();
 
             /* this condition is needed because the 'brochure' field is not required 
             so the PDF file must be processed only when a file is uploaded */ 
@@ -74,7 +75,7 @@ class FilesController extends AbstractController
                 } 
                 // updates the 'brochureFilename' property to store the PDF file name 
                 // instead of its contents 
-                $files->setBrochureFilename($newFilename); 
+                $files->setName($newFilename); 
             } 
             // ... persist the $files variable or any other work 
             return $this->redirectToRoute('app_dashboard'); 
@@ -89,7 +90,7 @@ class FilesController extends AbstractController
     }
 
     #[Route('/files/view', name: 'app_files')]
-    public function showFiles(): Response 
+    public function showFiles(FilesRepository $filesRepository): Response
 
     { 
         /** 
@@ -100,7 +101,10 @@ class FilesController extends AbstractController
          * 
          */ 
 
-        $files = $this->getDoctrine()->getRepository(Files::class)->findAll(); 
+        $files = $filesRepository->findAll();
+
+        
+
 
         return $this->render('content/files/viewFiles.html.twig', [ 
 

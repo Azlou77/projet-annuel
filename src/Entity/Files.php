@@ -22,20 +22,7 @@ class Files
     #[ORM\Column(length: 255)]
     private ?string $extension = null;
 
-    #[ORM\Column(type: 'string')]
-    private string $brochureFilename;
-
-    public function getBrochureFilename(): string
-    {
-        return $this->brochureFilename;
-    }
-
-    public function setBrochureFilename(string $brochureFilename): self
-    {
-        $this->brochureFilename = $brochureFilename;
-
-        return $this;
-    }
+    
 
 
 

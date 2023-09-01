@@ -59,7 +59,7 @@ form input {
 
 .form-control{
     width:50%;
-    margin-left: 60%;
+    margin: 0 36px 0 60%;
 }
 
 .login-label{
