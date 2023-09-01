@@ -19,7 +19,7 @@ header nav {
 }
 a {
     text-decoration: none;
-    color: white;
+    color: black;
     text-transform: uppercase;
 }
 header nav a:hover {
@@ -85,7 +85,7 @@ form h1{
 }
 .action_button:hover {
     background-color: black;
-    color: white;
+    color: white ;
     cursor: pointer;
 }
 
@@ -134,4 +134,9 @@ input[type="checkbox"], input[type="radio"]{
 .dashboard-space{
     margin-left: 0px;
     width: 137px;
+}
+
+.nav.flex-column li a{
+    color: white;
+
 }
