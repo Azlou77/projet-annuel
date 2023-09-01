@@ -4,7 +4,8 @@
 namespace App\Controller; 
 
 // use generals 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;use Symfony\Component\HttpFoundation\Response; 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response; 
 use Symfony\Component\Routing\Annotation\Route; 
 use Symfony\Component\HttpFoundation\Request; 
 use Symfony\Component\String\Slugger\SluggerInterface; 
@@ -21,13 +22,26 @@ use App\Form\FilesType;
 class FilesController extends AbstractController 
 
  { 
+    /** 
+     * class for manage the files 
+     * 
+     * @return Response 
+     * @method  index() to display the list of files 
+     * @method  new() to add a new file 
+     */
 
-    // Brochures  
     #[Route('/files/add', name: 'app_files_new')] 
-
     public function new(Request $request, SluggerInterface $slugger): Response 
 
     { 
+        /** 
+         * Function to add a new file 
+         * 
+         * @Route("/files/add", name="app_files_new") 
+         * @return Response 
+         * 
+         */
+
         $files = new Files(); 
         $form = $this->createForm(FilesType::class, $files); 
         $form->handleRequest($request); 
@@ -66,12 +80,34 @@ class FilesController extends AbstractController
             return $this->redirectToRoute('app_dashboard'); 
 
         } 
+        // display the template to add a new file
         return $this->render('content/files/addFiles.html.twig', [ 
 
             'form' => $form, 
 
         ]); 
-    } 
-} 
+    }
 
-?> 
+    #[Route('/files/view', name: 'app_files')]
+    public function showFiles(): Response 
+
+    { 
+        /** 
+         * Function to display the list of files 
+         * 
+         * @Route("/files", name="app_files") 
+         * @return Response 
+         * 
+         */ 
+
+        $files = $this->getDoctrine()->getRepository(Files::class)->findAll(); 
+
+        return $this->render('content/files/viewFiles.html.twig', [ 
+
+            'files' => $files, 
+
+        ]);
+    }
+}
+    
+?>

@@ -42,8 +42,10 @@ class ContentController extends AbstractController
          * 
          */
 
-        $files = scandir('C:\xampp\htdocs\projet-annuel\public\uploads\brochures');
-        return $this->render('content/dashboard.html.twig', compact('files'));
+        // $files = scandir('C:\xampp\htdocs\projet-annuel\public\uploads\brochures');
+
+        return $this->render('content/dashboard.html.twig');
+        // compact('files'));
     }
 
 

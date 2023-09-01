@@ -15,6 +15,7 @@ header nav {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+ 
 }
 a {
     text-decoration: none;
@@ -30,6 +31,7 @@ main {
 }
 main h1 {
     margin-bottom: 15px;
+    
 }
 section {
     margin-bottom: 25px;
@@ -39,6 +41,8 @@ section {
     font-weight: bold;
     margin-top: 15px;
 }
+
+/* Path: assets\css\login.css */
 form {
     width: 500px;
     height: 200px;
@@ -62,3 +66,25 @@ form input {
     cursor: pointer;
 }
 
+/* Path: assets\css\register.css */
+.register-title{
+    display: flex;
+    justify-content: center;
+}
+.register-form{
+  margin-left: 43%;
+}
+label {
+    display : block;
+    margin-left:-45px;
+}
+form input{
+    margin-left: -45px;
+}
+.btn-primary{
+    margin: 2% 0 0 38%;
+    width: 200px;
+}
+input[type="checkbox"], input[type="radio"]{
+    margin-left: -64%;
+}
