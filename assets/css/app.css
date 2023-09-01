@@ -19,7 +19,7 @@ header nav {
 }
 a {
     text-decoration: none;
-    color: black;
+    color: white;
     text-transform: uppercase;
 }
 header nav a:hover {
@@ -62,7 +62,7 @@ form input {
     margin-left: 60%;
 }
 
-form label{
+.login-label{
     margin-left: 60%;
 }
 
@@ -111,4 +111,27 @@ form input{
 }
 input[type="checkbox"], input[type="radio"]{
     margin-left: -64%;
+}
+
+/* Path: assets\css\dashboard.css */
+.dashboard-main{
+    width:100%;
+}
+
+
+.dashboard-dropdown{
+    margin-left: 10%;
+    margin-top: 2%;
+    width:70%;
+}
+.progress{
+    width:87%;
+}
+.progress-bar{
+    width: 25%;
+    
+}
+.dashboard-space{
+    margin-left: 0px;
+    width: 137px;
 }
