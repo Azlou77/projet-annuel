@@ -140,3 +140,13 @@ input[type="checkbox"], input[type="radio"]{
     color: white;
 
 }
+
+/* Path: assets\css\prices.css */
+nav {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+.prices-logo_cart{
+    width: 7.5%;
+}
