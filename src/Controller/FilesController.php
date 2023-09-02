@@ -55,7 +55,8 @@ class FilesController extends AbstractController
 
                 } catch (FileException $e) { 
 
-                    // ... handle exception if something happens during file upload 
+                    // ... handle exception if something happens during file upload
+
 
                 } 
                 // updates the 'brochureFilename' property to store the PDF file name 
@@ -71,7 +72,17 @@ class FilesController extends AbstractController
             'form' => $form, 
 
         ]); 
-    } 
+    }
+
+    #[Route('/files/show', name: 'app_files_show')]
+    public function show(): Response
+    {
+        return $this->render('content/files/showFiles.html.twig', [
+            'controller_name' => 'FilesController',
+            'files' => 'files'
+        ]);
+    }
+
 } 
 
 ?> 

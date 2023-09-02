@@ -39,6 +39,22 @@ class FilesRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * Return all files
+     * @return Files[]
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws \Doctrine\ORM\NoResultException
+    */
+    public function findAllFiles(): array
+    {
+        $qb = $this->createQueryBuilder('f')
+            ->select('f')
+            ->orderBy('f.id', 'ASC')
+            ->getQuery();
+
+        return $qb->execute();
+    }
+
 //    /**
 //     * @return Files[] Returns an array of Files objects
 //     */
