@@ -34,7 +34,7 @@ class UploadController extends BaseController
       }
     }
     return $this->render('app/test-upload.html.twig', [
-      'form' => $form->createView(),
+        'form' => $form->createView(),
     ]);
   }
   // ...
