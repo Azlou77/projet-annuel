@@ -81,7 +81,7 @@
 
                         {# Price products #}
                         <div style="width: 80px;">
-                          <h5 class="mb-0">20 euros</h5>
+                          <h5>20</h5>
                         </div>
                         <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
                       </div>
@@ -95,7 +95,7 @@
         <h5>Total prices</h5>
       </div>
       <div>
-        <h5>20 euros</h5>
+        <h5 id="total"></h5>
       </div>
     </div>
 
@@ -113,7 +113,7 @@
       </button>
     </div>
   </li>
-    <li><span  id="value">0</span></li>
+    <li></li>
   </ul>
 </nav>
 </div>
@@ -146,7 +146,8 @@
             <button type="button" id="btn" class="btn btn-lg btn-block btn-primary" data-toggle="modal" data-target="#exampleModal">
             Add cart
             </button>
-
+            <span  id="value">0</span>
+     
             {# Button reset quantity #}
             <button type="button" class="btn reset">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
@@ -154,7 +155,7 @@
                 <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
               </svg>
 
-              
+        
             </button>
 
             {# Button increase quantity #}
@@ -165,38 +166,61 @@
               <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
             </svg>
             </button>
+                    {# js  totale prices #}
+                   <h4 id="prices">0</h4>
 
-            
           </div>
         </div>
       </div>
 
       {# Prices script #}
       <script>
-     // set initial account
-let count = 0;
+      // script with count increase, reset, decrease and total prices
 
-// select value 
-const value = document.querySelector('#value');
-const btns = document.querySelectorAll('.btn');
+      // prices
+      let prices = 20;
+      let total = 0;
+      let count = 0;
+      let value = document.getElementById('value');
+      let pricesTotal = document.getElementById('prices');
+      let totalPrices = document.getElementById('total');
+      let btn = document.getElementById('btn');
 
-btns.forEach(function(btn){
-  btn.addEventListener('click', function(e){
-    const styles = e.currentTarget.classList;
-    if (styles.contains('decrease')){
-      count--;
-    
-    value.textContent = count;
-    } else if (styles.contains('increase')){
-      count++;
-    
+      // increase
+      let increase = document.querySelector('.increase');
+      increase.addEventListener('click', function(){
+        count++;
+        value.innerHTML = count;
+        total = prices * count;
+        pricesTotal.innerHTML = total;
+        totalPrices.innerHTML = total;
+      });
 
-    } else {
-      count = 0;
-    }
-    value.textContent = count;
-  });
+      // decrease
+      let decrease = document.querySelector('.decrease');
+      decrease.addEventListener('click', function(){
+        if(count > 0){
+          count--;
+          value.innerHTML = count;
+          total = prices * count;
+          pricesTotal.innerHTML = total;
+          totalPrices.innerHTML = total;
+        }
+      });
+
+      // reset
+      let reset = document.querySelector('.reset');
+      reset.addEventListener('click', function(){
+        count = 0;
+        value.innerHTML = count;
+        total = prices * count;
+        pricesTotal.innerHTML = total;
+        totalPrices.innerHTML = total;
+
+
+  
 });
+
 
 
 
