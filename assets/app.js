@@ -12,22 +12,32 @@ import './css/app.css';
 import './bootstrap';
 
 
+// set initial account
+let count = 0;
 
+// select value 
+const value = document.querySelector('#value');
+const btns = document.querySelectorAll('.btn');
 
-const toggleBtn = document.querySelector(".sidebar-toggle");
-const closeBtn = document.querySelector(".close-btn");
-const sidebar = document.querySelector(".sidebar");
+btns.forEach(function(btn){
+  btn.addEventListener('click', function(e){
+    const styles = e.currentTarget.classList;
+    if (styles.contains('decrease')){
+      count--;
+    
+    value.textContent = count;
+    } else if (styles.contains('increase')){
+      count++;
+    
 
-toggleBtn.addEventListener("click", function () {
-  // if (sidebar.classList.contains("show-sidebar")) {
-  //   sidebar.classList.remove("show-sidebar");
-  // } else {
-  //   sidebar.classList.add("show-sidebar");
-  // }
-  sidebar.classList.toggle("show-sidebar");
+    } else {
+      count = 0;
+    }
+    value.textContent = count;
+  });
 });
 
-closeBtn.addEventListener("click", function () {
-  sidebar.classList.remove("show-sidebar");
-});
+
+
+
 
