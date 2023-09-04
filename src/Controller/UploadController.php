@@ -4,7 +4,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use App\Service\FileUploader;
 use App\Form\FileUploadType;
-class UploadController extends BaseController
+class UploadController extends AbstractController
 {
   // ...
   /**
@@ -33,8 +33,8 @@ class UploadController extends BaseController
         }
       }
     }
-    return $this->render('app/test-upload.html.twig', [
-        'form' => $form->createView(),
+   return $this->render('app/test-upload.html.twig', [
+      'form' => $form->createView(),
     ]);
   }
   // ...
