@@ -1,7 +1,16 @@
 {# template list of files in a directory #}
 {% for file in files %}
-    {{ file }}
+<table class="table table-striped table-hover">
+    <tr>
 
-    <a href="{{ asset('uploads/' ~ file) }}">Download</a>
+        <td><a href="{{ asset('uploads/' ~ file) }}" target="_blank">{{ file }}</a></td>
+    </tr>
+</table>
+
+{# button to delete file #}
+<a href="{{ path('app_delete_file', {'file': file}) }}" class="btn btn-danger">Delete</a>
+
+    
+ 
 
 {% endfor %}

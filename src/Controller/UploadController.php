@@ -57,11 +57,31 @@ class UploadController extends AbstractController
         $full_path = $directory;
         $files = scandir($full_path);
         $files = array_diff(scandir($full_path), array('.', '..'));
+
+
             return $this->render('upload/view.html.twig', [
             'files' => $files,
         ]);
     }
 
+    // function to delete a file
+    /**
+     * @Route("/delete/{file}", name="app_delete_file")
+     */
+
+    public function deleteFileAction($file, FileUploader $file_uploader)
+    {
+        $directory = $file_uploader->getTargetDirectory();
+        $full_path = $directory.'/'.$file;
+        $filesystem = new Filesystem();
+        try {
+            $filesystem->remove($full_path);
+        } catch (IOExceptionInterface $exception) {
+            echo "An error occurred while deleting your file at ".$exception->getPath();
+        }
+        return $this->redirectToRoute('app_list_files');
+    }
+    
 
     
 }
