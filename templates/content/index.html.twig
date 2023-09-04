@@ -9,12 +9,23 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+
 
     This friendly message is coming from:
     <ul>
         <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/projet-annuel/src/Controller/ContentController.php'|file_link(0) }}">src/Controller/ContentController.php</a></code></li>
         <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/projet-annuel/templates/content/index.html.twig'|file_link(0) }}">templates/content/index.html.twig</a></code></li>
+
+        <h1>Brochures</h1>  
+
+        {% for content in listcontent %}
+            <a href="{{ asset('uploads/brochures/' ~ content.brochureFilename) }}">View brochure (PDF)</a>
+        {% endfor %}
+
+
+
+          
+
     </ul>
 </div>
 {% endblock %}

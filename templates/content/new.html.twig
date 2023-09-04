@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+{# templates/content/new.html.twig #}
+<h1>Adding a new content</h1>
+
+{{ form_start(form) }}
+    {# ... #}
+
+    {{ form_row(form.brochure) }}
+    {{ form_row(form.size) }}
+
+    <button type="submit">Create</button>
+{{ form_end(form) }}
+
+
+
+{% endblock %}

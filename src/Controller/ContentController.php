@@ -3,17 +3,19 @@
 namespace App\Controller;
 
 
-// use generals
+use App\Entity\Content;
+use App\Form\ContentType;
+use App\Repository\ContentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\String\Slugger\SluggerInterface;
-
-// use for UploadedFile
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\File;
+
+
 
 
 /*
@@ -28,6 +30,8 @@ use Symfony\Component\HttpFoundation\File\File;
 
 class ContentController extends AbstractController
 {
+
+    
    
 
     // Dashboard page
@@ -63,23 +67,25 @@ class ContentController extends AbstractController
             return $this->render('content/prices.html.twig');
         }
 
-        // Brochures page
+      
 
-        #[Route('/user/files', name: 'app_brochures_new')]
+
+
+        #[Route('/files/new', name: 'app_brochures_new')]
         public function new(Request $request, SluggerInterface $slugger): Response
         {
             /**
-             * Function to add a new user
+             * Function to add a new files
              * 
-             * @Route("/user/new", name="app_user_new")
+             * @Route("/files/new", name="app_user_new")
              * @return Response
              * @param Request $request to get the form
              * @param SluggerInterface $slugger to slug the name of the file
              * 
              */
 
-            $user = new User();
-            $form = $this->createForm(UserType::class, $user);
+            $content = new Content();
+            $form = $this->createForm(ContentType::class, $content);
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
@@ -107,7 +113,9 @@ class ContentController extends AbstractController
 
                     // updates the 'brochureFilename' property to store the PDF file name
                     // instead of its contents
-                    $user->setBrochureFilename($newFilename);
+                    $content->setBrochureFilename(
+                        $newFilename
+                    );
                     
                 }
 
@@ -116,19 +124,11 @@ class ContentController extends AbstractController
                 return $this->redirectToRoute('app_dashboard');
             }
 
-            return $this->render('users/files/addFiles.html.twig', [
+            return $this->render('content/new.html.twig', [
                 'form' => $form,
+                
             ]);
-        }
-
-
-
-
     
-
-
-    
-
-    
+    }
 }
-
+?>
