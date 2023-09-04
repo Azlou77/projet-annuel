@@ -57,7 +57,7 @@ class UploadController extends AbstractController
         $full_path = $directory;
         $files = scandir($full_path);
         $files = array_diff(scandir($full_path), array('.', '..'));
-        return $this->render('upload/view.html.twig', [
+            return $this->render('upload/view.html.twig', [
             'files' => $files,
         ]);
     }
