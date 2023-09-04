@@ -1,0 +1,7 @@
+{# template list of files in a directory #}
+{% for file in files %}
+    {{ file }}
+
+    <a href="{{ asset('uploads/' ~ file) }}">Download</a>
+
+{% endfor %}

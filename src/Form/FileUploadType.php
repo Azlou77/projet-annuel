@@ -30,7 +30,9 @@ class FileUploadType extends AbstractType
                 'application/csv', 
                 'application/excel', 
                 'application/vnd.msexcel', 
-                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                'application/pdf',
+                'application/x-pdf',
               ],
               'mimeTypesMessage' => "This document isn't valid.",
             ])
