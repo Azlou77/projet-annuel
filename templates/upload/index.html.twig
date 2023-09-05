@@ -20,20 +20,19 @@
                       <td>
                         <a href= "assets/uploads/{{ file }}">{{ file }}</a>
                       </td>
-                      <td>
-                        <a href="{{ path('app_files_new')}}" class="btn btn-primary">
-                          new
-                        </a>
                       
-                        
-                        
-                        
+                      {# row actions #}
+                      <td>
+                        <a href="{{ path('app_files_new', {'file': file}) }}" class="btn btn-primary">add</a>
+                        <br>
+                        <a href="{{ path('app_files_delete', {'file': file}) }}" class="btn btn-danger">delete</a>
                       </td>
+          
+                        
                 </tr>
             </thead>
         </table>
-{# button to delete file #}
-<a href="{{ path('app_files_delete', {'file': file}) }}" class="btn btn-danger">Delete</a>
+
     {% endfor %}
   {% endblock %}
     
