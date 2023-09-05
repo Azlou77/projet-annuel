@@ -8,4 +8,17 @@
 
     {{ include('product/_form.html.twig') }}
 
+    {# message success #}
+    {% if app.request.get('success') %}
+        <div class=\"alert alert-success\">
+            <p>Product created successfully</p>
+        </div>
+    {% endif %}
+    {# message error #}
+    {% if app.request.get('error') %}
+        <div class=\"alert alert-danger\">
+            <p>Product not created</p>
+        </div>
+    {% endif %}
+
 {% endblock %}

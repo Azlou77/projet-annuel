@@ -165,3 +165,13 @@ input#file_upload_upload_file{
     margin-left: 0px;
 
 }
+
+/* Path: assets\css\product.css */
+div.col-md-12{
+    display:flex;
+    justify-content: end;
+}
+
+.btn-primary.product{
+    margin-left: -9%;
+}
