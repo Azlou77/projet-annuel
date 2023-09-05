@@ -165,6 +165,14 @@ input#file_upload_upload_file{
     margin-left: 0px;
 
 }
+.btn-primary.files{
+    width: 100px;
+
+}
+.btn-info{
+    width: 25%;
+    margin-left: 38%;
+}
 
 /* Path: assets\css\product.css */
 div.col-md-12{
