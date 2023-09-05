@@ -38,6 +38,10 @@ class ProductRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function findAll(): array
+    {
+        return $this->findBy([], ['name' => 'ASC']);
+    }   
 
 //    /**
 //     * @return Product[] Returns an array of Product objects
