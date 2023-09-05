@@ -4,11 +4,12 @@
 {% block body %}
 	<h1>List of files uploaded</h1>
 
-<a class="btn btn-info" href="{{ path('app_files_new') }}">
-	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-plus-circle-fill" viewbox="0 0 16 16">
-		<path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm1 8a1 1 0 0 1-2 0V7H5a1 1 0 1 1 0-2h2V4a1 1 0 1 1 2 0v2h2a1 1 0 1 1 0 2H9v1z"/>
-	</svg>
-	Add new file
+{# add icon #}
+<a class="btn btn-info" href="{{ path('app_files_new') }}" style="color:white;">
+	<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-plus" viewBox="0 0 16 16">
+  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+  </svg>
+	New
 </a>
 
 
