@@ -1,25 +1,39 @@
-    {# templates/upload/index.html.twig #}
+  {# templates/upload/index.html.twig #}
+  {% extends 'base.html.twig' %}
 
-    {% block title %}Upload test{% endblock %}
-    {% block description %}This page will render a simple form to upload a file.{% endblock %}
-    {% block content %}
-      <div class="container container-fluid">
-        <div class="row">
-          <div class="col-lg-8">
-          {{ form_start(form, { attr: { 'accept-charset' : 'utf-8' }}) }}
-            <div class="form-group">
-              {{ form_label(form.upload_file) }}
-              {{ form_widget(form.upload_file) }}
-              {{ form_errors(form.upload_file) }}
-            </div>
+  {% block body %}
+    <h1>List of files uploaded</h1>
 
+    {# files loop #}
+    {% for file in files %}
+        {# files table #}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                  <th scope="col">Files</th>
+                  <th scope="col">Actions</th>
+                </tr>
 
-            <div class="form-group">
-              {{ form_widget(form.send, {'label': "Upload this file", 'attr' : { 'class': 'btn btn-primary' }}) }}
-            </div>
-            {{ form_rest(form) }}
-          {{ form_end(form) }}
-          </div>
-        </div>
-      </div>
-    {% endblock %}
+                {# CRUD actions #}
+                <tr>
+                      {# files uploaded #}
+                      <td>
+                        <a href= "assets/uploads/{{ file }}">{{ file }}</a>
+                      </td>
+                      <td>
+                        <a href="{{ path('app_files_new')}}" class="btn btn-primary">
+                          new
+                        </a>
+                      
+                        
+                        
+                        
+                      </td>
+                </tr>
+            </thead>
+        </table>
+{# button to delete file #}
+<a href="{{ path('app_files_delete', {'file': file}) }}" class="btn btn-danger">Delete</a>
+    {% endfor %}
+  {% endblock %}
+    

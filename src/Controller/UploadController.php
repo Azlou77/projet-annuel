@@ -7,7 +7,8 @@ use App\Form\FileUploadType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Filesystem\Path;
+use Symfony\Component\HttpFoundation\Response;
+
 
 
 class UploadController extends AbstractController
@@ -70,16 +71,18 @@ class UploadController extends AbstractController
         }
       }
     }
+
    return $this->render('upload/new.html.twig', [
       'form' => $form->createView(),
     ]);
   }
+
   
     
 
     /**
      * @Route("/delete/{file}", name="app_files_delete")
-     * @method({"DELETE"})
+     * @method({"GET"})
      * @param $file
      * @param FileUploader $file_uploader
      * @return Response
@@ -99,6 +102,7 @@ class UploadController extends AbstractController
             echo "An error occurred while deleting your file at ".$exception->getPath();
         }
         return $this->redirectToRoute('app_files_index');
+
     }
 
 }
