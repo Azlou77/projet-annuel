@@ -183,3 +183,11 @@ div.col-md-12{
 .btn-primary.product{
     margin-left: -9%;
 }
+
+input#product_image{
+    margin-left: -9%;
+}
+
+textarea{
+    margin-left: -45px;
+}

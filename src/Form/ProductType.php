@@ -18,38 +18,33 @@ class ProductType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('name', options:[
-            'label' => 'Nom'
-        ])
+        ->add('name')
         ->add('description')
-        ->add('price', MoneyType::class, options:[
-            'label' => 'Prix',
-            'divisor' => 100,
+        ->add('price')
+        ->add('quantity', null, [
             'constraints' => [
-                new Positive(
-                    message: 'Le prix ne peut être négatif'
-                )
-            ]
+                new Positive(),
+            ],
         ])
-        ->add('quantity', options:[
-            'label' => 'Unités en stock'
-        ])
-      
+
         ->add('images', FileType::class, [
-            'label' => false,
             'multiple' => true,
             'mapped' => false,
             'required' => false,
             'constraints' => [
-                new All(
+                new All([
                     new Image([
-                        'maxWidth' => 1280,
-                        'maxWidthMessage' => 'L\'image doit faire {{ max_width }} pixels de large au maximum'
-                    ])
-                )
-            ]
-        ])          
-        ;
+                        'maxSize' => '5M',
+                        'maxSizeMessage' => 'La taille totale des images ne peut pas dépasser {{ limit }}',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                        ],
+                        'mimeTypesMessage' => 'Seuls les formats {{ types }} sont acceptés',
+                    ]),
+                ]),
+            ],
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
