@@ -28,10 +28,12 @@ header nav a:hover {
 main {
     margin: 0 auto;
     width: 900px;
+
 }
 main h1 {
-    margin: 0 0 15px 0;
-    
+    display: flex;
+    justify-content: center;
+ 
 }
 section {
     margin-bottom: 25px;
@@ -149,4 +151,17 @@ nav {
 }
 .prices-logo_cart{
     width: 7.5%;
+}
+
+/* Path: assets\css\files.css */
+.container.files{
+    display: flex;
+    justify-content: end;
+}
+button#file_upload_send{
+    margin-left: 0px;
+}
+input#file_upload_upload_file{
+    margin-left: 0px;
+
 }

@@ -12,13 +12,42 @@ use Symfony\Component\Filesystem\Path;
 
 class UploadController extends AbstractController
 {
+
+  /**
+     * @Route("/files", name="app_files_index")
+     * @method({"GET"})
+     * @param FileUploader $file_uploader
+     * @return Response
+     */
+
+    // function to list all files
+    public function index(FileUploader $file_uploader)
+    {
+     
+        // redirect C:/xampp/htdocs/projet-annuel/public/uploads to https://127.0.0.1:8000/public/uploads
+        $directory = $file_uploader->getTargetDirectory();
+        $full_path = $directory;
+        $files = scandir($full_path);
+        $files = array_diff(scandir($full_path), array('.', '..'));
+
+
+            return $this->render('upload/index.html.twig', [
+            'files' => $files,
+        ]);
+    }
+
   
   /**
-   * @Route("/test-upload", name="app_test_upload")
+   * @Route("/files/new", name="app_files_new")
+   * @method({"GET", "POST"})
+   * @param Request $request
+   * @param FileUploader $file_uploader
+   * @return Response
+   
    */
 
 
-  public function excelCommunesAction(Request $request, FileUploader $file_uploader)
+  public function newUploadFile(Request $request, FileUploader $file_uploader)
   {
     $form = $this->createForm(FileUploadType::class);
     $form->handleRequest($request);
@@ -41,35 +70,25 @@ class UploadController extends AbstractController
         }
       }
     }
-   return $this->render('upload/index.html.twig', [
+   return $this->render('upload/new.html.twig', [
       'form' => $form->createView(),
     ]);
   }
-  // function to list of files in a directory
+  
+    
+
     /**
-     * @Route("/files", name="app_list_files")
+     * @Route("/delete/{file}", name="app_files_delete")
+     * @method({"DELETE"})
+     * @param $file
+     * @param FileUploader $file_uploader
+     * @return Response
+     * 
      */
-    public function listFilesAction(FileUploader $file_uploader)
-    {
+
      
-        // redirect C:/xampp/htdocs/projet-annuel/public/uploads to https://127.0.0.1:8000/public/uploads
-        $directory = $file_uploader->getTargetDirectory();
-        $full_path = $directory;
-        $files = scandir($full_path);
-        $files = array_diff(scandir($full_path), array('.', '..'));
-
-
-            return $this->render('upload/view.html.twig', [
-            'files' => $files,
-        ]);
-    }
-
     // function to delete a file
-    /**
-     * @Route("/delete/{file}", name="app_delete_file")
-     */
-
-    public function deleteFileAction($file, FileUploader $file_uploader)
+    public function deleteUploadFile($file, FileUploader $file_uploader)
     {
         $directory = $file_uploader->getTargetDirectory();
         $full_path = $directory.'/'.$file;
@@ -79,9 +98,7 @@ class UploadController extends AbstractController
         } catch (IOExceptionInterface $exception) {
             echo "An error occurred while deleting your file at ".$exception->getPath();
         }
-        return $this->redirectToRoute('app_list_files');
+        return $this->redirectToRoute('app_files_index');
     }
-    
 
-    
 }
